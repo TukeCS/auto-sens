@@ -1,4 +1,5 @@
 use crate::filemanip::find_steam_folder;
+use crate::filemanip::list_games;
 use std::io;
 use std::path::PathBuf;
 use std::process::exit;
@@ -16,6 +17,16 @@ pub fn program() {
         } else {
             println!("Steam folder not found. Exiting...");
             exit(1);
+        }
+    }
+
+    let games = list_games();
+    if games.is_empty() {
+        println!("No games found in Steam folder.");
+    } else {
+        println!("Games found in Steam folder:");
+        for game in games {
+            println!("{:?}", game);
         }
     }
 }
