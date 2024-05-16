@@ -1,3 +1,4 @@
+mod filemanip;
 mod interface;
 
 fn main() {

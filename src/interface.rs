@@ -1,4 +1,4 @@
-use std::env;
+use crate::filemanip::find_steam_folder;
 use std::io;
 use std::path::PathBuf;
 use std::process::exit;
@@ -26,14 +26,4 @@ fn get_user_input() -> PathBuf {
     io::stdin().read_line(&mut input).unwrap();
 
     PathBuf::from(input.trim())
-}
-
-fn find_steam_folder() -> Option<PathBuf> {
-    if let Some(program_files) = env::var_os("ProgramFiles(x86)") {
-        let steam_folder = PathBuf::from(program_files).join("Steam");
-        if steam_folder.exists() {
-            return Some(steam_folder);
-        }
-    }
-    None
 }
